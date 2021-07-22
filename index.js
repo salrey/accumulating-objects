@@ -37,11 +37,24 @@ const studentsArr = [
  * @returns {String} A string containing the names of all the students from the `students` array.
  */
 function stringNames(students) {
+  // 1. Default value and output
+  let stringOfNames = students[0].name;
+  // 2. Define the loop 
+  for (let i = 1; i < students.length; i++) {
+      /// Fancy method of removing the last comma space if you use this at the end of concatenation:
+      // names += students[i].name + ', '
+      // names.slice(0,-2)
+      /// OR 
+      /// if (i === students.length -1) then names += students[i] else { names += students[i].name + ', '}
+    stringOfNames += ', ' + students[i].name 
+  }
+
+  return stringOfNames
 
 }
 
-stringNames(studentsArr);
-//> "Leanne Graham, Ervin Howell, Clementine Bauch, Patricia Lebsack, John Dietrich, Dennis Schulist"
+console.log(stringNames(studentsArr));
+> "Leanne Graham, Ervin Howell, Clementine Bauch, Patricia Lebsack, John Dietrich, Dennis Schulist"
 
 /**
  * Returns the names of each student in the class in an array.
@@ -49,11 +62,20 @@ stringNames(studentsArr);
  * @returns {String[]} An array of the names of all the students from the `students` array.
  */
 function arrayNames(students) {
+  // 1. Default Value and output
+  let nameArray = []
+  // 2. Define the loop 
+  for (let i = 0; i < students.length; i++) {
+    
+    nameArray.push(students[i].name)
+  }
+
+  return nameArray
 
 }
 
-arrayNames(studentsArr);
-//> ['Leanne Graham', 'Ervin Howell', 'Clementine Bauch', 'Patricia Lebsack', 'John Dietrich', 'Dennis Schulist']
+console.log(arrayNames(studentsArr));
+> ['Leanne Graham', 'Ervin Howell', 'Clementine Bauch', 'Patricia Lebsack', 'John Dietrich', 'Dennis Schulist']
 
 /**
  * Searches for a student by name.
@@ -62,13 +84,25 @@ arrayNames(studentsArr);
  * @returns {Object} The student in the class whose name matches.
  */
 function findByName(students, name) {
+  // 1. Default value and output
+  let foundStudent = {}
+  // 2. Define the loop 
+  for (let i = 0; i < students.length; i++) {
+    const student = students[i]
+    if (student.name === name) {
+      foundStudent = student
+    }
+
+  }
+
+  return foundStudent
 
 }
 
-findByName(studentsArr, "Clementine Bauch");
+console.log(findByName(studentsArr, "Clementine Bauch"));
 //> { "name": "Clementine Bauch", "GPA": 3.4, "role": "Teacher's Assistant" }
 
-findByName(studentsArr, "John Dietrich");
+console.log(findByName(studentsArr, "John Dietrich"));
 //> { "name": "John Dietrich", "GPA": 3.7, "role": "Hall Monitor" }
 
 /**
@@ -77,10 +111,21 @@ findByName(studentsArr, "John Dietrich");
  * @returns {Number} The average GPA for the class.
  */
 function findAverageGPA(students) {
+  // 1. Default Value and Output
+  let studentGPA = 0;
+  // 2. Define the loop
+  for (let i = 0; i < students.length; i++) {
+    let student = students[i]
+    studentGPA += student.GPA 
+
+  } studentGPA = (studentGPA/students.length).toFixed(2)
+
+
+  return studentGPA
 
 }
 
-findAverageGPA(studentsArr);
+console.log(findAverageGPA(studentsArr));
 //> 3.45
 
 /**
@@ -90,10 +135,21 @@ findAverageGPA(studentsArr);
  * @returns {Object[]} The students who have the role.
  */
 function filterByRole(students, role) {
+  //1. Default Value and Output
+  let studentRole = []
+  // 2. Define the loop
+  for (let i = 0; i < students.length; i++) {
+    //3. Accumulate!
+    const student = students[i]
+    if (student.role === role)
+    studentRole.push(student)
+  }
+
+  return studentRole
 
 }
 
-filterByRole(studentsArr, "Hall Monitor");
+console.log(filterByRole(studentsArr, "Hall Monitor"));
 //> [
 //     {
 //         "name": "Ervin Howell",
@@ -107,7 +163,7 @@ filterByRole(studentsArr, "Hall Monitor");
 //     }
 // ]
 
-filterByRole(studentsArr, "Teacher's Assistant");
+console.log(filterByRole(studentsArr, "Teacher's Assistant"));
 //> [
 //     {
 //         "name": "Clementine Bauch",
