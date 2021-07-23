@@ -112,16 +112,16 @@ console.log(findByName(studentsArr, "John Dietrich"));
  */
 function findAverageGPA(students) {
   // 1. Default Value and Output
-  let studentGPA = 0;
+  let averageGPA = 0;
   // 2. Define the loop
   for (let i = 0; i < students.length; i++) {
     let student = students[i]
-    studentGPA += student.GPA 
+    averageGPA += student.GPA 
 
-  } studentGPA = (studentGPA/students.length).toFixed(2)
+  } averageGPA = (averageGPA/students.length).toFixed(2)
 
 
-  return studentGPA
+  return averageGPA
 
 }
 
@@ -176,3 +176,28 @@ console.log(filterByRole(studentsArr, "Teacher's Assistant"));
 //         "role": "Teacher's Assistant",
 //     }
 // ]
+
+/**
+ * Finds the student with the lowest GPA.
+ * @param {Object[]} students - An array of objects, each representing a student.
+ * @returns {Object} The student with the lowest GPA.
+ * */
+function findLowestGPAStudent(students) {
+  if (students.length === 0) {
+    return {}
+  }
+  // 1. Default Value and Output
+  let lowestGPA = students[0]
+    //2 . Define the loop
+    for (let i = 0; i < students.length; i++) {
+      // 3. Accumulate!
+      const student = students[i]
+      if (student.GPA < lowestGPA.GPA) {
+        lowestGPA = student
+      }    
+      }
+        return lowestGPA
+    } 
+
+ console.log(findLowestGPAStudent(studentsArr));
+//> { name: "Ervin Howell", GPA: 2.9, role: "Hall Monitor" }
